@@ -20,8 +20,6 @@ namespace OpenWindow
     /// </summary>
     public partial class MainWindow : Window
     {
-        //public MainWindowViewModel _viewModel;
-
         /// <summary>
         /// 
         /// </summary>
@@ -29,8 +27,22 @@ namespace OpenWindow
         {
             InitializeComponent();
 
-            //_viewModel = new MainWindowViewModel();
-            //DataContext = _viewModel;
+            DataContext = new HomeViewModel();
+        }
+
+        private void HomeBtn_Clicked(object sender, RoutedEventArgs e)
+        {
+            DataContext = new HomeViewModel();
+        }
+
+        private void SettingsBtn_Clicked(object sender, RoutedEventArgs e)
+        {
+            DataContext = new SettingsViewModel();
+        }
+
+        private void ModulesBtn_Clicked(object sender, RoutedEventArgs e)
+        {
+            DataContext = new ModulesViewModel();
         }
     }
 }
