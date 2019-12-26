@@ -6,7 +6,9 @@
              xmlns:local="clr-namespace:OpenWindow.Views"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid Background="#FFB90000">
-            
-    </Grid>
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <DockPanel Background="#FFB90000">
+            <CheckBox Content="Show Top Menu" IsChecked="{Binding Settings.IsMenuVisible}" DockPanel.Dock="Top" />
+        </DockPanel>
+    </ScrollViewer>
 </UserControl>

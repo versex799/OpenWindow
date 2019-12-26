@@ -4,7 +4,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 
-namespace OpenWindow
+namespace OpenWindowLib
 {
     /// <summary>
     /// Notify UI of changes to properties
@@ -22,7 +22,7 @@ namespace OpenWindow
         /// Notify UI of changes to the specified property
         /// </summary>
         /// <param name="property"></param>
-        protected void OnProprtyChanged(string property)
+        protected void OnPropertyChanged(string property)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(property));
         }

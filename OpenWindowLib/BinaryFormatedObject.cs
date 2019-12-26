@@ -5,13 +5,9 @@ using System.Linq;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 
-namespace OpenWindow.Models
+namespace OpenWindowLib
 {
-    /// <summary>
-    /// Store objects to disk in a binary serialized format
-    /// </summary>
-    /// <typeparam name="T"></typeparam>
-    public static class PersistentStorage<T>
+    public class BinaryFormatedObject<T>
     {
         /// <summary>
         /// Saves a copy of the provided object to disk with the provided filename.
