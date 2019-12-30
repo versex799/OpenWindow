@@ -1,4 +1,5 @@
 ﻿using OpenWindow.MEF;
+using OpenWindow.ViewModels;
 using OpenWindowLib;
 using System;
 using System.Collections.Generic;
@@ -22,7 +23,10 @@ namespace OpenWindow.Views
     /// </summary>
     public partial class ModulesView
     {
-        Importer _importer;
+        /// <summary>
+        /// View model for the Modules view
+        /// </summary>
+        public ModulesViewModel _viewmodel;
 
         /// <summary>
         /// Creates an instance of the module
@@ -30,22 +34,18 @@ namespace OpenWindow.Views
         public ModulesView()
         {
             InitializeComponent();
+            _viewmodel = new ModulesViewModel();
+            DataContext = _viewmodel;
         }
 
         private void openBtn_Click(object sender, RoutedEventArgs e)
         {
-            if (listview1.SelectedIndex > -1)
-                contentControl1.Content = _importer.GetModule(listview1.SelectedItem.ToString());
+
         }
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
-            if (_importer == null)
-            {
-                _importer = new Importer();
-                _importer.Import();
-                listview1.ItemsSource = _importer.GetModuleNames();
-            } 
+
         }
     }
 }

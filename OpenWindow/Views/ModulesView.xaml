@@ -5,13 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:OpenWindow.Views"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800" Loaded="UserControl_Loaded">
-    <UserControl.Background>
-        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-            <GradientStop Color="#FFC500FF" Offset="0"/>
-            <GradientStop Color="#FFA700D8" Offset="1"/>
-        </LinearGradientBrush>
-    </UserControl.Background>
+             d:DesignHeight="450" d:DesignWidth="800" Loaded="UserControl_Loaded" Background="#FF939393">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="300" />
@@ -21,8 +15,14 @@
             <RowDefinition Height="*" />
             <RowDefinition Height="50" />
         </Grid.RowDefinitions>
-        <ListView x:Name="listview1" Margin="10" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Grid.Column="0" />
+        <ListView x:Name="modulesListView" ItemsSource="{Binding Model.Importer.Modules}" Margin="10" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Grid.Column="0">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding Metadata.Name}" />
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
         <Button x:Name="openBtn" Click="openBtn_Click" Height="30" Width="75" HorizontalAlignment="Right" Margin="10" VerticalAlignment="Center" Grid.Row="1" Content="Open" />
-        <ContentControl x:Name="contentControl1" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="10" Grid.RowSpan="2" />
+        <ContentControl Content="{Binding ElementName=modulesListView, Path=SelectedItem.Value}" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="10" Grid.RowSpan="2" />
     </Grid>
 </UserControl>

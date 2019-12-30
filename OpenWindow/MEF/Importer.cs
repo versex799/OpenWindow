@@ -19,6 +19,15 @@ namespace OpenWindow.MEF
         private IEnumerable<Lazy<ModuleUserControl, IModuleMetadata>> _modules;
 
         /// <summary>
+        /// List all available modules in alphabetical order
+        /// </summary>
+        public List<Lazy<ModuleUserControl, IModuleMetadata>> Modules { get
+            {
+                return _modules.OrderBy(m => m.Metadata.Name).ToList();
+            }
+        }
+
+        /// <summary>
         /// Import modules.
         /// </summary>
         public void Import()
@@ -37,7 +46,7 @@ namespace OpenWindow.MEF
         {
             List<string> names = new List<string>();
 
-            foreach(var mod in _modules)
+            foreach(var mod in Modules)
             {
                 names.Add(mod.Metadata.Name);
             }
@@ -55,6 +64,11 @@ namespace OpenWindow.MEF
             return _modules.Where(m => m.Metadata.Name == name)?.FirstOrDefault()?.Metadata ?? null;
         }
 
+        /// <summary>
+        /// Get the specified module
+        /// </summary>
+        /// <param name="name"></param>
+        /// <returns></returns>
         public ModuleUserControl GetModule(string name)
         {
             return _modules.Where(m => m.Metadata.Name == name)?.FirstOrDefault().Value ?? null;
