@@ -7,7 +7,7 @@
         xmlns:viewmodel="clr-namespace:OpenWindow.ViewModels"
         xmlns:view="clr-namespace:OpenWindow.Views"
         mc:Ignorable="d"
-        Title="Open Window Console" Height="450" Width="800">
+        Title="Open Window Console" Height="450" Width="800" Icon="Images/OpenWindow.png">
     <Window.Resources>
         <DataTemplate x:Name="settingsViewTemplate" DataType="{x:Type viewmodel:SettingsViewModel}">
             <view:SettingsView DataContext="{Binding}" />
@@ -17,6 +17,9 @@
         </DataTemplate>
         <DataTemplate x:Name="modulesViewTemplate" DataType="{x:Type viewmodel:ModulesViewModel}">
             <view:ModulesView DataContext="{Binding}" />
+        </DataTemplate>
+        <DataTemplate x:Name="scriptsViewTemplate" DataType="{x:Type viewmodel:ScriptsViewModel}">
+            <view:ScriptsView DataContext="{Binding}" />
         </DataTemplate>
     </Window.Resources>
     <DockPanel>
@@ -56,9 +59,20 @@
                     </LinearGradientBrush>
                 </UniformGrid.Background>
                 <Button Content="Home" Width="75" Height="75" Click="HomeBtn_Clicked"  />
-                <Button Content="" Width="75" Height="75" />
+                <Button Content="Scripts" Width="75" Height="75" Click="Button_Click" />
                 <Button Content="Modules" Width="75" Height="75" Click="ModulesBtn_Clicked" />
-                <Button Content="Settings" Width="75" Height="75" Click="SettingsBtn_Clicked" />
+                <Button Width="75" Height="75" Click="SettingsBtn_Clicked">
+                    <Button.Background>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="#FF3E0483" Offset="0"/>
+                            <GradientStop Color="#FF7A2CD8" Offset="1"/>
+                        </LinearGradientBrush>
+                    </Button.Background>
+                    <StackPanel>
+                        <Image Source="Images/settings.png" />
+                        <TextBlock>Disconnect from Server</TextBlock>
+                    </StackPanel>
+                </Button>
             </UniformGrid>
             <ContentControl Grid.Column="1" Grid.ColumnSpan="4" Grid.Row="0" Grid.RowSpan="5" Content="{Binding}">
 

@@ -44,5 +44,10 @@ namespace OpenWindow
         {
             DataContext = new ModulesViewModel();
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            DataContext = new ScriptsViewModel();
+        }
     }
 }
