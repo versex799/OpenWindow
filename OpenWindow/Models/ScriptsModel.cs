@@ -37,6 +37,14 @@ namespace OpenWindow.Models
             set { _scriptsLocation = value; OnPropertyChanged("ScriptsLocation"); }
         }
 
+        private string _selectedScript;
+
+        public string SelectedScript
+        {
+            get { return _selectedScript; }
+            set { _selectedScript = value; OnPropertyChanged("SelectedScript"); InitializePython(); }
+        }
+
         private ObservableCollection<string> _scripts;
 
         public ObservableCollection<string> Scripts
@@ -100,6 +108,31 @@ namespace OpenWindow.Models
                 Application.Current.Dispatcher.Invoke(() => {
                     Scripts.Add(e.Name);
                 });
+            }
+        }
+
+        private void InitializePython()
+        {
+            if (string.IsNullOrEmpty(SelectedScript))
+                return;
+
+            var engine = IronPython.Hosting.Python.CreateEngine();
+            var script = ScriptsLocation + SelectedScript;
+
+            var source = engine.CreateScriptSourceFromFile(script);
+            var eIO = engine.Runtime.IO;
+            var errors = new MemoryStream();
+            eIO.SetErrorOutput(errors, Encoding.Default);
+            var results = new MemoryStream();
+            eIO.SetOutput(results, Encoding.Default);
+            var scope = engine.CreateScope();
+            source.Execute(scope);
+
+            IronPython.Runtime.List vars = scope.GetVariable("arguments");
+
+            foreach(var arg in vars)
+            {
+                MessageBox.Show(arg.ToString());
             }
         }
     }

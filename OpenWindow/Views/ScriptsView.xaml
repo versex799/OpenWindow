@@ -15,7 +15,7 @@
             <RowDefinition Height="*" />
             <RowDefinition Height="50" />
         </Grid.RowDefinitions>
-        <ListView x:Name="modulesListView" ItemsSource="{Binding Model.Scripts}" Margin="10" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Grid.Column="0">
+        <ListView x:Name="modulesListView" ItemsSource="{Binding Model.Scripts}" SelectedValue="{Binding Model.SelectedScript, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="10" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Grid.Column="0">
             <!--<ListView.ItemTemplate>
                 <DataTemplate>
                     <TextBlock Text="{Binding Metadata.Name}" />
