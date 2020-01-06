@@ -13,8 +13,14 @@ namespace OpenWindow.ViewModels
     /// </summary>
     public class ScriptsViewModel
     {
+        /// <summary>
+        /// 
+        /// </summary>
         public ScriptsModel Model { get; set; }
 
+        /// <summary>
+        /// Initialize an instance of ScriptsViewModel
+        /// </summary>
         public ScriptsViewModel()
         {
             Model = new ScriptsModel();

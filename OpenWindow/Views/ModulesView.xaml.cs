@@ -34,13 +34,6 @@ namespace OpenWindow.Views
         public ModulesView()
         {
             InitializeComponent();
-            _viewmodel = new ModulesViewModel();
-            DataContext = _viewmodel;
-        }
-
-        private void openBtn_Click(object sender, RoutedEventArgs e)
-        {
-
         }
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)

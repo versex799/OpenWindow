@@ -1,8 +1,9 @@
-﻿using OpenWindow.ViewModels;
+﻿using OpenWindowLib;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -13,18 +14,17 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace OpenWindow
+namespace OpenWindow.Views
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for UserControlMetaDataView.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class UserControlMetaDataView : UserControl
     {
-        //public AppViewModel ViewModel;
         /// <summary>
         /// 
         /// </summary>
-        public MainWindow()
+        public UserControlMetaDataView()
         {
             InitializeComponent();
         }

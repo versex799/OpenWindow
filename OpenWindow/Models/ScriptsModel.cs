@@ -15,46 +15,44 @@ namespace OpenWindow.Models
     /// </summary>
     public class ScriptsModel : ObservableObject
     {
-        private int _numberOfArgs;
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public int NumberOfArgs
-        {
-            get { return _numberOfArgs; }
-            set { _numberOfArgs = value; OnPropertyChanged("NumberOfArgs"); }
-        }
-
         private string _scriptsLocation = ".\\Scripts\\";
 
         /// <summary>
-        /// 
+        /// The location of the Scripts directory
         /// </summary>
         public string ScriptsLocation
         {
             get { return _scriptsLocation; }
-            set { _scriptsLocation = value; OnPropertyChanged("ScriptsLocation"); }
+            set { OnPropertyChanged(ref _scriptsLocation, value); }
         }
 
         private string _selectedScript;
 
+        /// <summary>
+        /// The currently selected script
+        /// </summary>
         public string SelectedScript
         {
             get { return _selectedScript; }
-            set { _selectedScript = value; OnPropertyChanged("SelectedScript"); InitializePython(); }
+            set { OnPropertyChanged(ref _selectedScript, value); InitializePython(); }
         }
 
         private ObservableCollection<string> _scripts;
 
+        /// <summary>
+        /// A collection of available scripts
+        /// </summary>
         public ObservableCollection<string> Scripts
         {   
             get { return _scripts; }
-            set { _scripts = value; OnPropertyChanged("Scripts"); }
+            set { OnPropertyChanged(ref _scripts, value); }
         }
 
         private FileSystemWatcher _fsw;
 
+        /// <summary>
+        /// Initialize an instance of ScriptsModel
+        /// </summary>
         public ScriptsModel()
         {
             Scripts = new ObservableCollection<string>();
@@ -64,6 +62,9 @@ namespace OpenWindow.Models
 
         private void LoadScripts()
         {
+            if (!Directory.Exists(ScriptsLocation))
+                return;
+
             foreach(var file in Directory.GetFiles(ScriptsLocation))
             {
                 if (!Scripts.Contains(file))

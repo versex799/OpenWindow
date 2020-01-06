@@ -17,27 +17,6 @@ namespace OpenWindow.Models
         /// </summary>
         public Importer Importer { get; set; }
 
-        private Lazy<ModuleUserControl, IModuleMetadata> _selectedModule;
-
-        /// <summary>
-        /// Cache the selected module
-        /// </summary>
-        public Lazy<ModuleUserControl, IModuleMetadata> SelectedModule
-        {
-            get
-            {
-                return _selectedModule;
-            }
-            set
-            {
-                if (value != _selectedModule)
-                {
-                    _selectedModule = value;
-                    OnPropertyChanged("SelectedModule");
-                }
-            }
-        }
-
         /// <summary>
         /// Conduct importation of modules
         /// </summary>

@@ -21,8 +21,14 @@ namespace OpenWindow.Views
     /// </summary>
     public partial class ScriptsView : UserControl
     {
+        /// <summary>
+        /// 
+        /// </summary>
         public ScriptsViewModel ViewModel { get; set; }
 
+        /// <summary>
+        /// Initialize an instance of ScriptsView
+        /// </summary>
         public ScriptsView()
         {
             InitializeComponent();

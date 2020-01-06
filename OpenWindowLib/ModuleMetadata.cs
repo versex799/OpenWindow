@@ -37,6 +37,7 @@ namespace OpenWindowLib
     public enum BitType
     {
         Bit32,
-        Bit64
+        Bit64,
+        Bit32And64
     }
 }

@@ -5,8 +5,27 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:OpenWindow.Views"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800" Background="#FF008518">
-    <Grid>
-            
-    </Grid>
+             d:DesignHeight="450" d:DesignWidth="800">
+    <DockPanel>
+        <TextBlock DockPanel.Dock="Top" HorizontalAlignment="Center" Text="Open Window" FontSize="48" FontFamily="Consolas" FontWeight="Bold" Foreground="Black" />
+        <TextBlock DockPanel.Dock="Top" HorizontalAlignment="Center" FontSize="16" FontFamily="Consolas" TextAlignment="Center">
+            A project by <Hyperlink Command="{Binding NavigateToCommand}" CommandParameter="https://github.com/versex799/OpenWindow">Versex</Hyperlink><LineBreak /><LineBreak />
+            And
+        </TextBlock>
+        <Image DockPanel.Dock="Top" HorizontalAlignment="Center" Source="/OpenWindow;component/Images/VETSECLogo.png" RenderTransformOrigin="0.5,0.5" Width="200" />
+        <TextBlock DockPanel.Dock="Top" HorizontalAlignment="Center" Text="Open Windows are never secure!" FontSize="16" FontFamily="Consolas" Foreground="Black" Margin="0,0,0,0" />
+        <Grid DockPanel.Dock="Top">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <TextBlock Grid.Column="0" Margin="20" HorizontalAlignment="Right" FontFamily="Consolas">
+                <Hyperlink Command="{Binding NavigateToCommand}" CommandParameter="https://github.com/VetSec">VetSec GitHub</Hyperlink>
+            </TextBlock>
+
+            <TextBlock Grid.Column="1" Margin="20" HorizontalAlignment="Left" FontFamily="Consolas">
+                <Hyperlink Command="{Binding NavigateToCommand}" CommandParameter="https://www.veteransec.com">VetSec Website</Hyperlink>
+            </TextBlock>
+        </Grid>
+    </DockPanel>
 </UserControl>

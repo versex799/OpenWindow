@@ -7,7 +7,10 @@
         xmlns:viewmodel="clr-namespace:OpenWindow.ViewModels"
         xmlns:view="clr-namespace:OpenWindow.Views"
         mc:Ignorable="d"
-        Title="Open Window Console" Height="450" Width="800" Icon="Images/OpenWindow.png">
+        Title="Open Window Console" Height="684.674" Width="950" Icon="Images/OpenWindow.png">
+    <Window.DataContext>
+        <local:AppViewModel />
+    </Window.DataContext>
     <Window.Resources>
         <DataTemplate x:Name="settingsViewTemplate" DataType="{x:Type viewmodel:SettingsViewModel}">
             <view:SettingsView DataContext="{Binding}" />
@@ -21,28 +24,29 @@
         <DataTemplate x:Name="scriptsViewTemplate" DataType="{x:Type viewmodel:ScriptsViewModel}">
             <view:ScriptsView DataContext="{Binding}" />
         </DataTemplate>
+        <DataTemplate x:Name="metadataViewTemplate" DataType="{x:Type viewmodel:UserControlMetaDataViewModel}">
+            <view:UserControlMetaDataView DataContext="{Binding}" />
+        </DataTemplate>
     </Window.Resources>
     <DockPanel>
-        <Menu DockPanel.Dock="Top" HorizontalAlignment="Stretch" VerticalAlignment="Top" Visibility="Collapsed" >
+        <Menu DockPanel.Dock="Top" Visibility="{Binding AppSettings.MenuVisibility}" HorizontalAlignment="Stretch" VerticalAlignment="Top" >
             <MenuItem Header="File">
-                <MenuItem Header="Open" />
+                <MenuItem Header="Add Module" />
+                <MenuItem Header="Add Script" />
                 <MenuItem Header="Exit" />
             </MenuItem>
             <MenuItem Header="Edit" />
         </Menu>
-        <Grid DockPanel.Dock="Top">
-            <Grid.Background>
-                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                    <GradientStop Color="#FF171717" Offset="0"/>
-                    <GradientStop Color="#FF171717" Offset="1"/>
-                </LinearGradientBrush>
-            </Grid.Background>
+        <Grid DockPanel.Dock="Top" Background="#FFDDDDDD">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*" />
                 <RowDefinition Height="*" />
                 <RowDefinition Height="*" />
                 <RowDefinition Height="*" />
                 <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="33" />
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="175" />
@@ -51,17 +55,11 @@
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-            <UniformGrid Rows="4" Grid.Column="0" Grid.RowSpan="5">
-                <UniformGrid.Background>
-                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                        <GradientStop Color="#FF040F00" Offset="0"/>
-                        <GradientStop Color="#FF040F00" Offset="1"/>
-                    </LinearGradientBrush>
-                </UniformGrid.Background>
-                <Button Content="Home" Width="75" Height="75" Click="HomeBtn_Clicked"  />
-                <Button Content="Scripts" Width="75" Height="75" Click="Button_Click" />
-                <Button Content="Modules" Width="75" Height="75" Click="ModulesBtn_Clicked" />
-                <Button Width="75" Height="75" Click="SettingsBtn_Clicked">
+            <UniformGrid Rows="4" Grid.Column="0" Grid.RowSpan="5" Background="#FF555555">
+                <Button Content="Home" Width="75" Height="75" Command="{Binding SwitchViewCommand}" CommandParameter="home" />
+                <Button Content="Scripts" Width="75" Height="75" Command="{Binding SwitchViewCommand}" CommandParameter="scripts" />
+                <Button Content="Modules" Width="75" Height="75" Command="{Binding SwitchViewCommand}" CommandParameter="modules" />
+                <Button Width="75" Height="75" Command="{Binding SwitchViewCommand}" CommandParameter="settings" ToolTip="Settings" >
                     <Button.Background>
                         <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                             <GradientStop Color="#FF3E0483" Offset="0"/>
@@ -74,9 +72,12 @@
                     </StackPanel>
                 </Button>
             </UniformGrid>
-            <ContentControl Grid.Column="1" Grid.ColumnSpan="4" Grid.Row="0" Grid.RowSpan="5" Content="{Binding}">
+            <ContentControl Grid.Column="1" Grid.ColumnSpan="4" Grid.Row="0" Grid.RowSpan="5" Margin="10,10,10,0" Content="{Binding CurrentViewModel}">
 
             </ContentControl>
+
+                <TextBox Grid.Column="0" Grid.ColumnSpan="5" Grid.Row="5" Grid.RowSpan="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5,5,5,0" />
+                <TextBox Grid.Row="7" Grid.ColumnSpan="5" DockPanel.Dock="Bottom" HorizontalAlignment="Stretch" Height="23" Margin="5" />
         </Grid>
     </DockPanel>
 </Window>

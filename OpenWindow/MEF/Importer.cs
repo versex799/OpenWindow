@@ -1,6 +1,7 @@
 ﻿using OpenWindowLib;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel.Composition;
 using System.ComponentModel.Composition.Hosting;
 using System.IO;
@@ -21,10 +22,9 @@ namespace OpenWindow.MEF
         /// <summary>
         /// List all available modules in alphabetical order
         /// </summary>
-        public List<Lazy<ModuleUserControl, IModuleMetadata>> Modules { get
-            {
-                return _modules.OrderBy(m => m.Metadata.Name).ToList();
-            }
+        public ObservableCollection<Lazy<ModuleUserControl, IModuleMetadata>> Modules
+        {
+            get { return new ObservableCollection<Lazy<ModuleUserControl, IModuleMetadata>>(_modules); }
         }
 
         /// <summary>
@@ -33,7 +33,7 @@ namespace OpenWindow.MEF
         public void Import()
         {
             var catelog = new AggregateCatalog();
-            catelog.Catalogs.Add(new DirectoryCatalog(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)));
+            catelog.Catalogs.Add(new DirectoryCatalog(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) + "\\Modules"));
             CompositionContainer container = new CompositionContainer(catelog);
             container.ComposeParts(this);
         }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 
 namespace OpenWindowLib
@@ -22,9 +23,11 @@ namespace OpenWindowLib
         /// Notify UI of changes to the specified property
         /// </summary>
         /// <param name="property"></param>
-        protected void OnPropertyChanged(string property)
+        protected void OnPropertyChanged<T>(ref T property, T value, [CallerMemberName] string propertyName = "")
         {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(property));
+            property = value;
+
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }

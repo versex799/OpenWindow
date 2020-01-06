@@ -50,7 +50,7 @@ namespace ExampleModule
         /// </summary>
         public override void Run()
         {
-
+            MessageBox.Show("I am running!");
         }
 
         /// <summary>

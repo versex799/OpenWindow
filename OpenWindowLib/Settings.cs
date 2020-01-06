@@ -2,12 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Windows;
 
 namespace OpenWindowLib
 {
     /// <summary>
     /// Application wide settings
     /// </summary>
+    [Serializable]
     public class Settings : ObservableObject
     {
         private bool _isMenuVisible = false;
@@ -18,7 +20,7 @@ namespace OpenWindowLib
         public bool IsMenuVisible
         {
             get { return _isMenuVisible; }
-            set { _isMenuVisible = value; OnPropertyChanged("IsMenuVisible"); }
+            set { OnPropertyChanged(ref _isMenuVisible, value); MenuVisibility = value ? Visibility.Visible : Visibility.Collapsed; }
         }
 
         private string _outputPath = ".\\";
@@ -29,9 +31,19 @@ namespace OpenWindowLib
         public string OutputPath
         {
             get { return _outputPath; }
-            set { _outputPath = value; OnPropertyChanged("OutputPath"); }
+            set { _outputPath = value; OnPropertyChanged(ref _outputPath, value); }
         }
 
+        private Visibility _menuVisibilty;
+
+        /// <summary>
+        /// Sets the visibility of the top menu bar
+        /// </summary>
+        public Visibility MenuVisibility
+        {
+            get { return _menuVisibilty; }
+            set { OnPropertyChanged(ref _menuVisibilty, value); }
+        }
 
         /// <summary>
         /// Create a new instance of the settings class
@@ -53,6 +65,11 @@ namespace OpenWindowLib
 
             this.IsMenuVisible = settings.IsMenuVisible;
             this.OutputPath = settings.OutputPath;
+        }
+
+        public void Save()
+        {
+            BinaryFormatedObject<Settings>.Save(this, "OpenWindow.Config");
         }
     }
 }
