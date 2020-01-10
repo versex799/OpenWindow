@@ -46,7 +46,7 @@
                 <RowDefinition Height="*" />
                 <RowDefinition Height="*" />
                 <RowDefinition Height="*" />
-                <RowDefinition Height="33" />
+                <RowDefinition />
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="175" />
@@ -56,19 +56,48 @@
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
             <UniformGrid Rows="4" Grid.Column="0" Grid.RowSpan="5" Background="#FF555555">
-                <Button Content="Home" Width="75" Height="75" Command="{Binding SwitchViewCommand}" CommandParameter="home" />
-                <Button Content="Scripts" Width="75" Height="75" Command="{Binding SwitchViewCommand}" CommandParameter="scripts" />
-                <Button Content="Modules" Width="75" Height="75" Command="{Binding SwitchViewCommand}" CommandParameter="modules" />
-                <Button Width="75" Height="75" Command="{Binding SwitchViewCommand}" CommandParameter="settings" ToolTip="Settings" >
+                <Button Width="75" Height="75" Command="{Binding SwitchViewCommand}" CommandParameter="home" ToolTip="Home">
                     <Button.Background>
                         <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                            <GradientStop Color="#FF3E0483" Offset="0"/>
-                            <GradientStop Color="#FF7A2CD8" Offset="1"/>
+                            <GradientStop Color="#FF00740F" Offset="0.004"/>
+                            <GradientStop Color="#FF3EF146" Offset="1"/>
                         </LinearGradientBrush>
                     </Button.Background>
                     <StackPanel>
-                        <Image Source="Images/settings.png" />
-                        <TextBlock>Disconnect from Server</TextBlock>
+                        <Image Source="Images/home2.png" Width="60" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                    </StackPanel>
+                </Button>
+                <Button Width="75" Height="75" Command="{Binding SwitchViewCommand}" CommandParameter="scripts" ToolTip="Scripts">
+                    <Button.Background>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="#FF0009CF" Offset="0.004"/>
+                            <GradientStop Color="#FF6C76DE" Offset="1"/>
+                        </LinearGradientBrush>
+                    </Button.Background>
+                    <StackPanel>
+                        <Image Source="Images/scroll.png"  Width="60" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                    </StackPanel>
+                </Button>
+                <Button Width="75" Height="75" Command="{Binding SwitchViewCommand}" CommandParameter="modules" ToolTip="Modules">
+                    <Button.Background>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="#FF760404" Offset="0.004"/>
+                            <GradientStop Color="#FFEC2929" Offset="1"/>
+                        </LinearGradientBrush>
+                    </Button.Background>
+                    <StackPanel>
+                        <Image Source="Images/puzzle-piece.png" Width="60" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                    </StackPanel>
+                </Button>
+                <Button Width="75" Height="75" Command="{Binding SwitchViewCommand}" CommandParameter="settings" ToolTip="Settings" >
+                    <Button.Background>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="#FF5F00D1" Offset="0"/>
+                            <GradientStop Color="#FFB487EA" Offset="1"/>
+                        </LinearGradientBrush>
+                    </Button.Background>
+                    <StackPanel>
+                        <Image Source="Images/settings.png"  Width="60" HorizontalAlignment="Center" VerticalAlignment="Center" />
                     </StackPanel>
                 </Button>
             </UniformGrid>
@@ -76,8 +105,20 @@
 
             </ContentControl>
 
-                <TextBox Grid.Column="0" Grid.ColumnSpan="5" Grid.Row="5" Grid.RowSpan="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5,5,5,0" />
-                <TextBox Grid.Row="7" Grid.ColumnSpan="5" DockPanel.Dock="Bottom" HorizontalAlignment="Stretch" Height="23" Margin="5" />
+            <Grid Grid.Column="0" Grid.ColumnSpan="5" Grid.Row="5" Grid.RowSpan="3" HorizontalAlignment="Stretch" Background="#FF555555" >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition Width="85" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition Height="33" />
+                </Grid.RowDefinitions>
+                <TextBox x:Name="outputBox" Grid.ColumnSpan="2" TextWrapping="Wrap" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5,5,5,0" FontFamily="Consolas" FontWeight="Bold" Background="#FF1E1E1E" Foreground="#FF108B04" IsReadOnly="True" Text="{Binding OutputText}" VerticalScrollBarVisibility="Auto" TextChanged="TextBox_TextChanged" />
+                <TextBox x:Name="InputBox" Grid.Row="1" Grid.ColumnSpan="1" DockPanel.Dock="Bottom" HorizontalAlignment="Stretch" Height="23" Margin="5" FontFamily="Consolas" FontWeight="Bold" Background="#FF1E1E1E" Foreground="#FF108B04" />
+                <Button Command="{Binding InputTextCommand}" CommandParameter="{Binding ElementName=InputBox, Path=Text}" Content="Send" Grid.Column="1" Grid.Row="1" Margin="5" />
+            </Grid>
+ 
         </Grid>
     </DockPanel>
 </Window>

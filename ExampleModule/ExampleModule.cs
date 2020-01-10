@@ -21,7 +21,7 @@ namespace ExampleModule
     /// </summary>
     [Export(typeof(ModuleUserControl))]
     [ExportMetadata("Name", "Example Module")]
-    [ExportMetadata("Description", "Example description")]
+    [ExportMetadata("Description", "This is a simple example module intended to demonstrate the extensibility of Open Window.")]
     [ExportMetadata("ModuleVersion", "1.2.0.0")]
     [ExportMetadata("OpenWindowVersion", "1.0.0.0")]
     [ExportMetadata("TargetOS", OSType.Linux)]
@@ -29,6 +29,8 @@ namespace ExampleModule
     [ExportMetadata("Bit", BitType.Bit64)]
     public partial class ExampleModule : ModuleUserControl
     {
+        public override event Output SendToOutput;
+
         /// <summary>
         /// Creates an instance of the module
         /// </summary>
@@ -50,7 +52,7 @@ namespace ExampleModule
         /// </summary>
         public override void Run()
         {
-            MessageBox.Show("I am running!");
+            SendToOutput?.Invoke("I am running!");
         }
 
         /// <summary>

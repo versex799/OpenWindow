@@ -22,14 +22,14 @@ namespace OpenWindow.Commands
         }
 
         private readonly Action<string> _execute;
-        private readonly Func<bool> _canExecute;
+        private readonly Predicate<object> _canExecute;
 
         /// <summary>
         /// Initialize an instance of RelayCommand
         /// </summary>
         /// <param name="execute"></param>
         /// <param name="canExecute"></param>
-        public RelayCommand(Action<string> execute, Func<bool> canExecute)
+        public RelayCommand(Action<string> execute, Predicate<object> canExecute)
         {
             if (execute == null)
                 throw new NullReferenceException("The action to execute cannot be null");
@@ -54,7 +54,7 @@ namespace OpenWindow.Commands
         /// <returns></returns>
         public bool CanExecute(object parameter)
         {
-            return _canExecute == null ? true : _canExecute();
+            return _canExecute == null ? true : _canExecute(parameter);
         }
 
         /// <summary>

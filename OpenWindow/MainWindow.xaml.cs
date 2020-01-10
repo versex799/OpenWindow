@@ -28,5 +28,10 @@ namespace OpenWindow
         {
             InitializeComponent();
         }
+
+        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            outputBox.ScrollToEnd();
+        }
     }
 }

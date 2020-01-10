@@ -46,7 +46,7 @@
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
             <TextBlock Text="Description:" FontFamily="Consolas" Grid.Column="0" Margin="5" HorizontalAlignment="Right" />
-            <TextBlock Text="{Binding Metadata.Description}" FontFamily="Consolas" Grid.Column="1" Margin="5" />
+            <TextBlock Text="{Binding Metadata.Description}" TextWrapping="Wrap" FontFamily="Consolas" Grid.Column="1" Margin="5" />
         </Grid>
     </DockPanel>
 </UserControl>

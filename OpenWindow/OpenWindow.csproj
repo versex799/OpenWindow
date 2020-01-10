@@ -698,5 +698,14 @@
     <Resource Include="Images\VETSECLogo.png" />
     <Resource Include="Lib\site-packages\README.txt" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\home2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\scroll.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\puzzle-piece.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

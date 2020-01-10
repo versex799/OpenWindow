@@ -20,10 +20,21 @@ namespace OpenWindow
         /// </summary>
         public Settings AppSettings { get; set; }
 
+        private string _outputText;
+
+        public string OutputText
+        {
+            get { return _outputText; }
+            set { OnPropertyChanged(ref _outputText, value);  }
+        }
+
+
         /// <summary>
         /// Switch the current view
         /// </summary>
         public RelayCommand SwitchViewCommand { get; set; }
+
+        public RelayCommand InputTextCommand { get; set; }
 
         private object _currentViewModel;
         
@@ -96,6 +107,7 @@ namespace OpenWindow
             CurrentViewModel = HomeVm;
 
             SwitchViewCommand = new RelayCommand(ChangeView);
+            InputTextCommand = new RelayCommand(InputText);
         }
 
         /// <summary>
@@ -113,6 +125,7 @@ namespace OpenWindow
                 case "modules":
                     {
                         CurrentViewModel = ModuleVm;
+                        ModuleVm.ForwardToOutput += ModuleVm_ForwardToOutput;
                         break;
                     }
                 case "home":
@@ -125,6 +138,40 @@ namespace OpenWindow
                         CurrentViewModel = ScriptsVm;
                         break;
                     }
+            }
+        }
+
+        private void InputText(string message)
+        {
+            if (!string.IsNullOrEmpty(OutputText))
+            {
+                var splittext = OutputText.Split('\n').ToList();
+                if (splittext.Count > 100)
+                    splittext.RemoveAt(0);
+
+                splittext.Add(message);
+                OutputText = string.Join("\n", splittext.ToArray());
+            }
+            else
+            {
+                OutputText = message;
+            }
+        }
+
+        private void ModuleVm_ForwardToOutput(string message)
+        {
+            if (!string.IsNullOrEmpty(OutputText))
+            {
+                var splittext = OutputText.Split('\n').ToList();
+                if (splittext.Count > 100)
+                    splittext.RemoveAt(0);
+
+                splittext.Add(message);
+                OutputText = string.Join("\n", splittext.ToArray());
+            }
+            else
+            {
+                OutputText = message;
             }
         }
     }

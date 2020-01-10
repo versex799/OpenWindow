@@ -13,7 +13,7 @@ namespace OpenWindowLib
         /// <summary>
         /// Send information back to the main application.
         /// </summary>
-        public event Output SendToOutput;
+        public virtual event Output SendToOutput;
 
         /// <summary>
         /// Settings from the application.
@@ -25,7 +25,7 @@ namespace OpenWindowLib
         /// </summary>
         public ModuleUserControl()
         {
-
+            
         }
 
         /// <summary>

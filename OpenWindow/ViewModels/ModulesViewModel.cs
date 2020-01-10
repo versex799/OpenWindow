@@ -15,6 +15,8 @@ namespace OpenWindow.ViewModels
     /// </summary>
     public class ModulesViewModel : ObservableObject
     {
+        public event Output ForwardToOutput;
+
         /// <summary>
         /// 
         /// </summary>
@@ -99,14 +101,20 @@ namespace OpenWindow.ViewModels
             SelectedModule.Value.Run();
         }
 
-        private bool CanRun()
+        private bool CanRun(object arg)
         {
-            return (CurrentControl != null && CurrentControl.GetType() == typeof(ModuleUserControl));
+            if (CurrentControl != null && CurrentControl is ModuleUserControl)
+                return true;
+            return false;
         }
 
         private void OpenModule(string arg)
         {
+            if (SelectedModule == null)
+                return;
+
             CurrentControl = SelectedModule.Value;
+            SelectedModule.Value.SendToOutput += ((message) => ForwardToOutput?.Invoke(message));
         }
 
     }
