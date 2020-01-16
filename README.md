@@ -12,3 +12,13 @@ To get started, you will need to download or clone the repo. When you open the s
 
 - Knowledge of C# / WPF
 - Visual Studio 
+
+## Works in Porgress
+
+- Building out the API to be used for creating functionality within modules
+
+## Future Development
+
+- Add the concept of sessions that can link modules
+- Add the ability to ingest and execute Python scripts
+- Add the ability to download and install modules
