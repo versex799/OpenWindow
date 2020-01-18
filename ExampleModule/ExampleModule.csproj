@@ -90,4 +90,7 @@
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>copy /Y "$(TargetDir)$(ProjectName).dll" "C:\Users\Versex\Source\Repos\OpenWindow\OpenWindow\bin\Debug\Modules"</PostBuildEvent>
+  </PropertyGroup>
 </Project>

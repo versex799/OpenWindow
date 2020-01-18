@@ -114,9 +114,9 @@
                     <RowDefinition />
                     <RowDefinition Height="33" />
                 </Grid.RowDefinitions>
-                <TextBox x:Name="outputBox" Grid.ColumnSpan="2" TextWrapping="Wrap" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5,5,5,0" FontFamily="Consolas" FontWeight="Bold" Background="#FF1E1E1E" Foreground="#FF108B04" IsReadOnly="True" Text="{Binding OutputText}" VerticalScrollBarVisibility="Auto" TextChanged="TextBox_TextChanged" />
-                <TextBox x:Name="InputBox" Grid.Row="1" Grid.ColumnSpan="1" DockPanel.Dock="Bottom" HorizontalAlignment="Stretch" Height="23" Margin="5" FontFamily="Consolas" FontWeight="Bold" Background="#FF1E1E1E" Foreground="#FF108B04" />
-                <Button Command="{Binding InputTextCommand}" CommandParameter="{Binding ElementName=InputBox, Path=Text}" Content="Send" Grid.Column="1" Grid.Row="1" Margin="5" />
+                <TextBox x:Name="outputBox" Grid.ColumnSpan="2" TextWrapping="Wrap" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5,5,5,0" FontFamily="Consolas" FontWeight="Bold" Background="#FF1E1E1E" Foreground="#FF12CD00" IsReadOnly="True" Text="{Binding OutputText}" VerticalScrollBarVisibility="Auto" TextChanged="TextBox_TextChanged" />
+                <TextBox x:Name="InputBox" Text="{Binding InText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.Row="1" Grid.ColumnSpan="1" DockPanel.Dock="Bottom" HorizontalAlignment="Stretch" Height="23" Margin="5" FontFamily="Consolas" FontWeight="Bold" Background="#FF1E1E1E" Foreground="#FF12CD00" />
+                <Button Command="{Binding InputTextCommand}" CommandParameter="{Binding ElementName=InputBox, Path=Text}" IsDefault="True" Content="Send" Grid.Column="1" Grid.Row="1" Margin="5" />
             </Grid>
  
         </Grid>

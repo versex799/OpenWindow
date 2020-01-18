@@ -62,5 +62,10 @@ namespace ExampleModule
         {
 
         }
+
+        public override void Input(string input)
+        {
+            
+        }
     }
 }

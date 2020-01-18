@@ -53,5 +53,7 @@ namespace OpenWindowLib
         /// Abort any operations currently in progress.
         /// </summary>
         public abstract void Abort();
+
+        public abstract void Input(string input);
     }
 }

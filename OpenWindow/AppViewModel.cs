@@ -91,6 +91,16 @@ namespace OpenWindow
             set { OnPropertyChanged(ref _settingsViewModel, value); }
         }
 
+        private string _inputText;
+
+        public string InText
+        {
+            get { return _inputText; }
+            set { OnPropertyChanged(ref _inputText, value); }
+        }
+
+
+
         /// <summary>
         /// Initialize an instance of the AppViewModel
         /// </summary>
@@ -151,11 +161,17 @@ namespace OpenWindow
 
                 splittext.Add(message);
                 OutputText = string.Join("\n", splittext.ToArray());
+                var cmod = (ModulesViewModel)CurrentViewModel;
+                cmod.ForwardInput(message);
             }
             else
             {
-                OutputText = message;
+                OutputText = "" + message;
+                var cmod = (ModulesViewModel)CurrentViewModel;
+                cmod.ForwardInput(message);
             }
+
+            InText = "";
         }
 
         private void ModuleVm_ForwardToOutput(string message)

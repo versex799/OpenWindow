@@ -117,5 +117,10 @@ namespace OpenWindow.ViewModels
             SelectedModule.Value.SendToOutput += ((message) => ForwardToOutput?.Invoke(message));
         }
 
+        public void ForwardInput(string input)
+        {
+            SelectedModule.Value.Input(input);
+        }
+
     }
 }
