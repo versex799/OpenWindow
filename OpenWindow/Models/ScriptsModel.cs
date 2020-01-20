@@ -74,6 +74,12 @@ namespace OpenWindow.Models
 
         private void WatchDirectory()
         {
+            if (!Directory.Exists(ScriptsLocation))
+            {
+                Directory.CreateDirectory(ScriptsLocation);
+                return;
+            }
+
             _fsw = new FileSystemWatcher(ScriptsLocation);
             _fsw.Created += _fsw_Created;
             _fsw.Deleted += _fsw_Deleted;

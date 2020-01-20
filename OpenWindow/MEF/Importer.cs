@@ -32,6 +32,13 @@ namespace OpenWindow.MEF
         /// </summary>
         public void Import()
         {
+            if (!Directory.Exists(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) + "\\Modules"))
+            {
+                Directory.CreateDirectory(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) +
+                                          "\\Modules");
+                return;
+            }
+
             var catelog = new AggregateCatalog();
             catelog.Catalogs.Add(new DirectoryCatalog(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) + "\\Modules"));
             CompositionContainer container = new CompositionContainer(catelog);

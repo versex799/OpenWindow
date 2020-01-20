@@ -161,14 +161,21 @@ namespace OpenWindow
 
                 splittext.Add(message);
                 OutputText = string.Join("\n", splittext.ToArray());
-                var cmod = (ModulesViewModel)CurrentViewModel;
-                cmod.ForwardInput(message);
+                if (CurrentViewModel is ModulesViewModel)
+                {
+                    var cmod = (ModulesViewModel) CurrentViewModel;
+                    cmod.ForwardInput(message);
+                }
             }
             else
             {
                 OutputText = "" + message;
-                var cmod = (ModulesViewModel)CurrentViewModel;
-                cmod.ForwardInput(message);
+
+                if (CurrentViewModel is ModulesViewModel)
+                {
+                    var cmod = (ModulesViewModel) CurrentViewModel;
+                    cmod.ForwardInput(message);
+                }
             }
 
             InText = "";

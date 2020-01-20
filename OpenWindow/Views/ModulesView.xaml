@@ -22,6 +22,7 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
+        <Button Command="{Binding AbortCommand}" CommandParameter="" Height="30" Width="75" HorizontalAlignment="Left" Margin="10" VerticalAlignment="Center" Grid.Row="1" Grid.Column="1" Content="Quit" />
         <Button Command="{Binding RunModuleCommand}" CommandParameter="" Height="30" Width="75" HorizontalAlignment="Right" Margin="10" VerticalAlignment="Center" Grid.Row="1" Grid.Column="1" Content="Run" />
         <Button Command="{Binding OpenModuleCommand}" CommandParameter="" Height="30" Width="95" HorizontalAlignment="Right" Margin="10" VerticalAlignment="Center" Grid.Row="1" Grid.Column="0" Content="Open Module" />
         <ContentControl x:Name="moduleContentControl" Content="{Binding CurrentControl}" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="10" Grid.RowSpan="2" />

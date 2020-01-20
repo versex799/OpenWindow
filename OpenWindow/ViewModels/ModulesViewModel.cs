@@ -30,6 +30,11 @@ namespace OpenWindow.ViewModels
         /// <summary>
         /// 
         /// </summary>
+        public RelayCommand AbortCommand { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
         public ObservableCollection<Lazy<ModuleUserControl, IModuleMetadata>> Modules
         {
             get { return Model.Importer.Modules; }
@@ -94,6 +99,12 @@ namespace OpenWindow.ViewModels
 
             OpenModuleCommand = new RelayCommand(OpenModule);
             RunModuleCommand = new RelayCommand(Run, CanRun);
+            AbortCommand = new RelayCommand(AbortModule);
+        }
+
+        private void AbortModule(string arg)
+        {
+            SelectedModule.Value.Abort();
         }
 
         private void Run(string arg)
@@ -119,7 +130,7 @@ namespace OpenWindow.ViewModels
 
         public void ForwardInput(string input)
         {
-            SelectedModule.Value.Input(input);
+            SelectedModule?.Value?.Input(input);
         }
 
     }
