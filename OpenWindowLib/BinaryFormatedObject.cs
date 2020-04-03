@@ -16,12 +16,27 @@ namespace OpenWindowLib
         /// <param name="filename">The filename to store the object as</param>
         public static void Save(T obj, string filename)
         {
+            if(obj == null)
+                throw new ArgumentNullException("obj cannot be null");
+            if(string.IsNullOrEmpty(filename))
+                throw new ArgumentException("filename must contain a value")
+        
             BinaryFormatter bf = new BinaryFormatter();
-
-            FileStream fs = new FileStream(filename, FileMode.Create);
-            bf.Serialize(fs, obj);
-            fs.Flush();
-            fs.Close();
+            
+            try
+            {
+                FileStream fs = new FileStream(filename, FileMode.Create);
+                bf.Serialize(fs, obj);
+            }
+            catch(Exception ex)
+            {
+                // Log Exception
+            }
+            finally
+            (
+                fs.Flush();
+                fs.Close();
+            }
         }
 
         /// <summary>
@@ -33,20 +48,22 @@ namespace OpenWindowLib
         {
             T e = default(T);
 
-            if (!File.Exists(filename))
+            if (string.IsNullOrEmpty(filename) || !File.Exists(filename))
+            {
+                // Log error and return default object
                 return e;
+            }
 
             BinaryFormatter bf = new BinaryFormatter();
 
-            FileStream fs = new FileStream(filename, FileMode.Open);
-
             try
             {
+                FileStream fs = new FileStream(filename, FileMode.Open);
                 e = (T)bf.Deserialize(fs);
             }
             catch (Exception exception)
             {
-                throw new Exception(exception.Message, exception);
+                // Log exception
             }
             finally
             {
