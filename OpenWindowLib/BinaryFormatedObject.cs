@@ -33,6 +33,7 @@ namespace OpenWindowLib
             catch (Exception ex)
             {
                 // Log Exception
+                throw;
             }
             finally
             {
@@ -51,13 +52,10 @@ namespace OpenWindowLib
         /// <returns></returns>
         public static T Restore(string filename)
         {
-            T e = default(T);
-
             if (string.IsNullOrEmpty(filename) || !File.Exists(filename))
-            {
-                // Log error and return default object
-                return e;
-            }
+                throw new ArgumentException("filename must have a value");
+
+            T e = default(T);
 
             BinaryFormatter bf = new BinaryFormatter();
             FileStream fs = null;
@@ -70,6 +68,7 @@ namespace OpenWindowLib
             catch (Exception exception)
             {
                 // Log exception
+                throw;
             }
             finally
             {
