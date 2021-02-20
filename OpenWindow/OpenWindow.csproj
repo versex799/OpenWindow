@@ -673,6 +673,9 @@
     <None Include="Lib\_weakrefset.py" />
     <None Include="Lib\__future__.py" />
     <None Include="Lib\__phello__.foo.py" />
+    <None Include="OpenWindow.Config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

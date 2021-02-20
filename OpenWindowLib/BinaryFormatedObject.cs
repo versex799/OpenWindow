@@ -53,7 +53,8 @@ namespace OpenWindowLib
         public static T Restore(string filename)
         {
             if (string.IsNullOrEmpty(filename) || !File.Exists(filename))
-                throw new ArgumentException("filename must have a value");
+                return default(T);
+                //throw new ArgumentException("filename must have a value");
 
             T e = default(T);
 
