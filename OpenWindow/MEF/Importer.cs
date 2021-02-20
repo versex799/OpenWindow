@@ -34,9 +34,16 @@ namespace OpenWindow.MEF
         {
             if (!Directory.Exists(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) + "\\Modules"))
             {
-                Directory.CreateDirectory(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) +
-                                          "\\Modules");
-                return;
+                try
+                {
+                    Directory.CreateDirectory(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) +
+                                              "\\Modules");
+                    return;
+                }
+                catch
+                {
+
+                }
             }
 
             var catelog = new AggregateCatalog();

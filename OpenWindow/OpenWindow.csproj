@@ -710,5 +710,10 @@
   <ItemGroup>
     <Resource Include="Images\puzzle-piece.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="Modules\ExampleModule.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
