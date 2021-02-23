@@ -15,7 +15,7 @@ This is still a work in progress. While I am slowly working on some relatively e
 - Knowledge of C# / WPF
 - Visual Studio 
 
-## Works in Porgress
+## Works in Progress
 
 - Building out the API to be used for creating functionality within modules
 
