@@ -8,6 +8,8 @@ The goal of this project is to enable people to quickly develop self-contained m
 
 To get started, you will need to download or clone the repo. When you open the solution, there are three projects. The main application is OpenWindow. There is an OpenWindowLib project that contains various classes that are shared between modules and the main application. The ExampleModule project is the template for creating a new module. The example module can be used as a basis on which to create your own module.
 
+This is still a work in progress. While I am slowly working on some relatively easy modules, there may be functionality that is desired that is not in place. If you happen to write a module that needs additional information from the main application, be sure to let me know so that I can add it. 
+
 ### Prerequisites
 
 - Knowledge of C# / WPF
