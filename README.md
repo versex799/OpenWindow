@@ -1,3 +1,5 @@
+![Open Windows Screenshot](https://github.com/versex799/OpenWindow/raw/master/OpenWindows.png)
+
 # Open Window Project
 
 This project is a learning platform for building exploitation modules in .Net. Being new to the infosec world can be daunting. In order to learn more about the plethora of exploits that exist, I needed a foundation on which I could build. This is my attempt at building that foundation.
